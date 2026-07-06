@@ -1,0 +1,1 @@
+hii my name mohammad afrid iam currently purchsing devops and mutli coloud and python
