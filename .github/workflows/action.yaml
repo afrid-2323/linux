@@ -6,6 +6,8 @@ on:
 
 jobs:
   test:
+    outputs:
+      version_id: ${{ steps.version.outputs.version_id }}
     runs-on: ${{ matrix.os }}
     strategy:
       # max-parallel: 2
@@ -31,6 +33,19 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-     - name: summary for jobs
-       run: 
-        echo "result ${{ matrix.node-version }} is passed" >> "$GITHUB_STEP_SUMMARY"
+      - name: summary for jobs
+        run: |
+          echo "result ${{ matrix.node-version }} is passed" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: demo out put
+        id: version
+        run: |
+           echo "version_id=1.0.0" >> $GITHUB_OUTPUT
+
+      - run: echo "${{ steps.version.outputs.version_id }}"
+
+  job2:
+    runs-on: ubuntu-slim
+    needs: test
+    steps:
+      - run: echo "joboutput is ${{ needs.test.outputs.version_id }}"
