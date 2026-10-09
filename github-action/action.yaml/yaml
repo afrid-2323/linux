@@ -1,0 +1,13 @@
+name: Docker Build and Push
+
+runs:
+  using: composite
+  steps:
+    - run: echo "Docker setup"
+      shell: bash
+
+    - run: echo "Docker login"
+      shell: bash
+
+    - run: echo "Docker build and push image"
+      shell: bash

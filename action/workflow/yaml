@@ -1,0 +1,11 @@
+name: test-submodules
+ on:
+  push:
+   branches: 'main'
+
+    jobs:
+      demo:
+        runs-on: ubuntu-latest
+        steps:
+          -name: checkout
+           uses: action/checkout@v7 
